@@ -120,7 +120,7 @@ cd cancer-genomics-pipeline
 
 ### 2. Install Nextflow
 
-Nextflow should be installed following the official installation guide. **Do not install via Conda** as it may cause version compatibility issues.
+Nextflow should be installed following the official installation guide. 
 
 **Follow the official Nextflow installation documentation:**
 - **Installation Guide:** https://www.nextflow.io/docs/latest/getstarted.html#installation
@@ -348,56 +348,6 @@ Cancer_samples_analysis/
    - Types: `normal`, `tumor`, or `junction`
    - Example: `normal_Patient001`, `tumor_Patient001`
 
-### Troubleshooting
-
-**Issue: Conda environment not found**
-```bash
-# Verify conda is initialized
-conda init bash
-# Restart terminal and try again
-```
-
-**Issue: Singularity cache errors**
-```bash
-# Create and set cache directory
-mkdir -p /path/to/singularity/cache
-export SINGULARITY_CACHEDIR="/path/to/singularity/cache"
-export NXF_SINGULARITY_CACHEDIR="/path/to/singularity/cache"
-```
-
-**Issue: No samples found during reorganization**
-```bash
-# Check that Sarek completed successfully
-# Verify the results directory structure matches expected format
-ls -R results/preprocessing/markduplicates/
-```
-
-**Issue: SLURM job fails**
-```bash
-# Check error logs
-cat somatic_germline_mutations_<JOBID>.err
-# Check output logs
-cat somatic_germline_mutations_<JOBID>.out
-```
-
----
-
-## Resource Allocation
-
-### QC Script
-- **Nodes:** 1
-- **CPUs:** 64 (adjustable based on available resources)
-- **Memory:** All available (mem=0)
-- **Typical runtime:** 2-6 hours (depends on number of samples)
-
-### Sarek Pipeline
-- **Nodes:** 1
-- **CPUs:** 64 (Nextflow will manage distribution)
-- **Memory:** All available (mem=0)
-- **Typical runtime:** 12-48 hours (varies by sample count and data size)
-
----
-
 ## Citation
 
 If you use this pipeline, please cite:
@@ -415,33 +365,3 @@ If you use this pipeline, please cite:
 > Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 (https://doi.org/10.1093/bioinformatics/btw354)
 
 ---
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## Support
-
-For issues, questions, or contributions:
-- Open an issue on GitHub
-- Contact: [your.email@institution.edu]
-
----
-
-## Changelog
-
-### Version 1.0.0
-- Initial release
-- QC pipeline with FastQC/MultiQC
-- Sarek integration for tumor-normal and tumor-only analysis
-- Automated result reorganization
-
----
-
-## Acknowledgments
-
-- nf-core community for the Sarek pipeline
-- SLURM cluster administrators
-- All contributors to the tools used in this pipeline
